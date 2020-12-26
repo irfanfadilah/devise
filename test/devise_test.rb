@@ -106,4 +106,12 @@ class DeviseTest < ActiveSupport::TestCase
       assert_no_match Devise.email_regexp, email
     end
   end
+
+  test 'activerecord_connected?' do
+    if DEVISE_ORM == :active_record
+      assert Devise.activerecord_connected?, true
+    elsif DEVISE_ORM == :mongoid
+      assert Devise.activerecord_connected?, false
+    end
+  end
 end
