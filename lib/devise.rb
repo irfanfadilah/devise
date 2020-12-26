@@ -301,6 +301,15 @@ module Devise
     defined?(ActiveRecord) && ActiveRecord.gem_version >= Gem::Version.new("5.1.x")
   end
 
+  def self.activerecord_connected?
+    begin
+      ActiveRecord::Base.connection
+      ActiveRecord::Base.connected?
+    rescue ActiveRecord::ConnectionNotEstablished
+      false
+    end
+  end
+
   # Default way to set up Devise. Run rails generate devise_install to create
   # a fresh initializer with all configuration values.
   def self.setup
