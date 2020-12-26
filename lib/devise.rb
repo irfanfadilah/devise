@@ -298,7 +298,7 @@ module Devise
   @@sign_in_after_change_password = true
 
   def self.activerecord51? # :nodoc:
-    defined?(ActiveRecord) && ActiveRecord.gem_version >= Gem::Version.new("5.1.x")
+    activerecord_connected? && ActiveRecord.gem_version >= Gem::Version.new("5.1.x")
   end
 
   def self.activerecord_connected?
